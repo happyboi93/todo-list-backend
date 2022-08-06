@@ -4,5 +4,6 @@
 *.env
 *.editorconfig
 *pnp.cjs
+*pnp.js
 *.yarnrc.yml
 *.yarn

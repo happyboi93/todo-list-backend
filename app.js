@@ -2,32 +2,31 @@ const express = require('express');
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 dotenv.config();
+const connectDB = require('./db/connection')
 // import todolistRoute
-const {getRoute,postRoute, putRoute, deleteRoute} = require('./routes/todolistRoute')
+const router = require('./routes/todolistRoute')
 const app = express()
 // use express.json() to get data into jsn format
 app.use(express.json())
 
 // port
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT 
 
-// todolistRoute route
-app.use('/', getRoute)
-app.use('/',postRoute)
-app.use('/',putRoute)
-app.use('/',deleteRoute)
-// Connect mongodb
-mongoose.connect(process.env.DB_CONNECT,{
-     useNewUrlParser:true,
-     useUnifiedTopology: true
- }).then(()=>console.log('Database connnected'))
-.catch(err=>console.log(err))
+// import routes
+app.use('/', router)
 
 
 // Add port and connect server
-app.listen(PORT,()=> console.log(`server connected to port: ${PORT}`))
+const start = async ()=>{
+  try {
+    await connectDB(process.env.DB_CONNECT)
+    app.listen(PORT,()=> console.log(`server connected to port: ${PORT}`))
+  } catch (e) {
+    console.log(e)
+  }
+}
 
-
+start();
 
 
 
