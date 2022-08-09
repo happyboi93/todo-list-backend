@@ -3,9 +3,9 @@ const router = require('express').Router()
 const {getRoute,postRoute,putRoute, deleteRoute} = require('../controller/controller')
 
 // todolistRoute route
-router.get('/api/item', getRoute)
-router.post('/api/item',postRoute)
-router.put('/api/item/:id',putRoute)
-router.delete('/api/item/:id',deleteRoute)
+router.get('/', getRoute)
+router.post('/',postRoute)
+router.put('/:id',putRoute)
+router.delete('/:id',deleteRoute)
 
 module.exports = router;

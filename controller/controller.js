@@ -5,7 +5,7 @@ const getRoute = ('/',async(req,res)=>{
   try {
     const allTodoList = await todolistModel.find({})
     res.status(200).json(allTodoList)
-    console.log(allTodoList)
+    // console.log(allTodoList)
   } catch (e) {
     res.json(e)
   }
@@ -17,8 +17,8 @@ const postRoute = ('/', async(req,res)=>{
     })
     //save this item in database
     const saveItem = await newItem.save()
-    res.status(200).json('items added sucessfully')
-    console.log(saveItem)
+    res.status(200).json(saveItem)
+    // console.log(saveItem)
   } catch (e) {
     res.json(e)
   }
@@ -41,7 +41,7 @@ const putRoute = ('/', async (req,res)=>{
  try {
    const updateItem = await todolistModel.findByIdAndUpdate(req.params.id,{$set: req.body})
    res.status(200).send('item updated')
-   console.log(updateItem)
+  //  console.log(updateItem)
  } catch (e) {
    res.json(e)
  }
@@ -52,8 +52,8 @@ const deleteRoute = ('/', async (req,res)=>{
    const updateItem = await todolistModel.findById(req.params.id)
    Object.assign(updateItem, req.body)
     await updateItem.remove()
-   res.status(200).json({data: true,msg:'item deleted sucessfully'})
-   console.log(deleteRoute)
+   res.status(200).json('Item deleted')
+  //  console.log(deleteRoute)
   } catch (e) {
     res.json(e, 'item not deleted')
   }

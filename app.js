@@ -13,14 +13,15 @@ app.use(express.json())
 const PORT = process.env.PORT 
 
 // import routes
-app.use('/', router)
+app.use('/api/item', router)
+// import cors to access network from any port
 
 
 // Add port and connect server
 const start = async ()=>{
   try {
-    await connectDB(process.env.DB_CONNECT)
     app.listen(PORT,()=> console.log(`server connected to port: ${PORT}`))
+    await connectDB(process.env.DB_CONNECT) 
   } catch (e) {
     console.log(e)
   }
