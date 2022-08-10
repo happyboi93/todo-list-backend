@@ -25,18 +25,7 @@ const postRoute = ('/', async(req,res)=>{
 })
 
 const putRoute = ('/', async (req,res)=>{
-  // try catch method
-//   try {
-//   // find item by id 
-//    const updateItem = await todolistModel.findById(req.params.id)
-//   // assign id to item
-//    Object.assign(updateItem, req.body)
-//  // save updated item
-//    await updateItem.save()
-//    // send updated Item
-//    res.status(200).json({data: updateItem,msg: 'updated sucessfully'})
-//   } catch (e) {
-//     res.json(e,'id not found')
+es.json(e,'id not found')
 //   }
  try {
    const updateItem = await todolistModel.findByIdAndUpdate(req.params.id,{$set: req.body})
@@ -48,15 +37,27 @@ const putRoute = ('/', async (req,res)=>{
 })
 
 const deleteRoute = ('/', async (req,res)=>{
-  try {
-   const updateItem = await todolistModel.findById(req.params.id)
-   Object.assign(updateItem, req.body)
-    await updateItem.remove()
-   res.status(200).json('Item deleted')
-  //  console.log(deleteRoute)
+    try {
+  // find item by id 
+   const deleteItem = await todolistModel.findById(req.params.id)
+  // assign id to item
+   Object.assign(deleteItem, req.body)
+ // save updated item
+   await deleteItem.delete()
+   // send updated Item
+   res.status(200).json('deleted sucessfully')
   } catch (e) {
-    res.json(e, 'item not deleted')
+    res.json(e,'id not found')
   }
+  // try {
+  //  const updateItem = await todolistModel.findById(req.params.id)
+  //  Object.assign(updateItem, req.body)
+  //   await updateItem.remove()
+  //  res.status(200).json('Item deleted')
+  // //  console.log(deleteRoute)
+  // } catch (e) {
+  //   res.status(404).json(e)
+  // }
 })
 
 
